@@ -12,7 +12,7 @@
 
 export const site = {
   name: 'Haiti Talent Lab',
-  url: 'https://haititalentlab.com',
+  url: 'https://haititalentlab.cv',
   /** Tagline maîtresse — doc 01 §5.1, à valider ZLC. */
   tagline: 'Connecter les talents haïtiens aux opportunités réelles.',
   description:
@@ -196,25 +196,25 @@ export const contacts: ReadonlyArray<{
   {
     audience: 'Partenariats',
     name: '[Contact à désigner]',
-    email: 'partenariats@haititalentlab.com',
+    email: 'partenariats@haititalentlab.cv',
     phone: '[Téléphone à confirmer]',
   },
   {
     audience: 'Presse',
     name: '[Contact à désigner]',
-    email: 'presse@haititalentlab.com',
+    email: 'presse@haititalentlab.cv',
     phone: '[Téléphone à confirmer]',
   },
   {
     audience: 'Entreprises recruteuses',
     name: '[Contact à désigner]',
-    email: 'entreprises@haititalentlab.com',
+    email: 'entreprises@haititalentlab.cv',
     phone: '[Téléphone à confirmer]',
   },
   {
     audience: 'Candidats',
     name: '[Contact à désigner]',
-    email: 'candidats@haititalentlab.com',
+    email: 'candidats@haititalentlab.cv',
     phone: '[Téléphone à confirmer]',
   },
 ];

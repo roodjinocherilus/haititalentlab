@@ -1,6 +1,6 @@
 # Haiti Talent Lab — site web
 
-Site institutionnel du programme national d'employabilité **Haiti Talent Lab** — 6 villes, 12 mois, 1,5 M USD à mobiliser. `haititalentlab.com`
+Site institutionnel du programme national d'employabilité **Haiti Talent Lab** — 6 villes, 12 mois, 1,5 M USD à mobiliser. `haititalentlab.cv`
 
 ## Stack
 
@@ -8,7 +8,7 @@ Site institutionnel du programme national d'employabilité **Haiti Talent Lab** 
 - [Tailwind CSS v4](https://tailwindcss.com) (via `@tailwindcss/postcss` — compatible Astro 6 / Rolldown)
 - Polices : **Space Grotesk** (titres) + **DM Sans** (corps), via Fontsource
 - Icônes : [`@lucide/astro`](https://lucide.dev)
-- Déploiement : **GitHub Pages**, domaine personnalisé `haititalentlab.com`
+- Déploiement : **GitHub Pages**, domaine personnalisé `haititalentlab.cv`
 
 ## Démarrer
 
@@ -55,7 +55,7 @@ Push sur `main` → le workflow `.github/workflows/deploy.yml` build
 (Node 22) et publie sur GitHub Pages. Le fichier `public/CNAME`
 configure le domaine personnalisé ; activer GitHub Pages
 (source : *GitHub Actions*) dans les réglages du dépôt et pointer le
-DNS de `haititalentlab.com` vers GitHub.
+DNS de `haititalentlab.cv` vers GitHub.
 
 ## Logo et assets de marque
 

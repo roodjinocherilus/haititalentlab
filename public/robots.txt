@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://haititalentlab.com/sitemap-index.xml
+Sitemap: https://haititalentlab.cv/sitemap-index.xml
