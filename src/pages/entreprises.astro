@@ -1,0 +1,126 @@
+---
+// Page Entreprises — recruteurs. Doc 02 §7.
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHero from '@/components/PageHero.astro';
+import PreuveSociale from '@/components/PreuveSociale.astro';
+import BandeauPartenaires from '@/components/BandeauPartenaires.astro';
+import TimelineEvent from '@/components/TimelineEvent.astro';
+import Faq from '@/components/Faq.astro';
+import Card from '@/components/Card.astro';
+import Newsletter from '@/components/Newsletter.astro';
+import { ArrowRight } from '@lucide/astro';
+
+const pourquoi = [
+  { t: 'Gain de temps', d: 'Présélection assurée par ZLC.' },
+  { t: 'Réduction des coûts', d: 'Pas de chasse, pas d’agence.' },
+  { t: 'Marque employeur', d: 'Visibilité nationale.' },
+  { t: 'Engagement RSE', d: "Contribution à l'employabilité." },
+];
+const timeline = [
+  { tag: 'J-60', title: 'Inscription comme recruteur' },
+  { tag: 'J-30', title: 'Définition des postes recherchés' },
+  { tag: 'J-15', title: 'Réception des profils présélectionnés' },
+  { tag: 'J', title: 'Entretiens directs sur place' },
+  { tag: 'J+15', title: 'Suivi des recrutements' },
+];
+const faq = [
+  { q: 'Combien coûte la participation ?' },
+  { q: 'Combien de candidats pourrons-nous rencontrer ?' },
+  { q: 'Pouvons-nous publier nos offres en amont ?' },
+  { q: 'Y a-t-il un engagement post-événement ?' },
+];
+---
+
+<BaseLayout
+  title="Entreprises"
+  description="Recrutez parmi des talents présélectionnés et vérifiés, dans un cadre structuré, avec un suivi mesurable."
+>
+  <PageHero
+    eyebrow="Entreprises"
+    title={'Recrutez parmi des <span class="text-sky">talents présélectionnés</span> et vérifiés.'}
+    subtitle="En participant à Haiti Talent Lab, vous accédez à un vivier qualifié, dans un cadre structuré, avec un suivi mesurable."
+    ghost="RECRUTER"
+    ctas={[{ label: "Participer en tant qu'entreprise", href: '/contact' }]}
+  />
+
+  {/* POURQUOI PARTICIPER */}
+  <section class="section bg-white">
+    <div class="mx-auto max-w-[1100px]">
+      <div class="eyebrow fu">Pourquoi participer</div>
+      <h2 class="h-section fu">Quatre bénéfices concrets.</h2>
+      <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          pourquoi.map((p, i) => (
+            <Card accent="sky" class={`fu ${i ? `fu-d${i}` : ''}`}>
+              <h3
+                class="font-display text-[19px] font-bold text-navy"
+                style="font-family: var(--font-display);"
+              >
+                {p.t}
+              </h3>
+              <p class="mt-2 text-[14px] leading-[1.6] text-ink">{p.d}</p>
+            </Card>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  {/* COMMENT ÇA SE PASSE */}
+  <section class="section bg-section">
+    <div class="mx-auto max-w-[760px]">
+      <div class="eyebrow fu">Comment ça se passe</div>
+      <h2 class="h-section fu">Timeline entreprise.</h2>
+      <div class="mt-10">
+        <TimelineEvent steps={timeline} tone="light" numbered={false} />
+      </div>
+    </div>
+  </section>
+
+  {/* TARIFICATION / NIVEAUX */}
+  <section class="section bg-white">
+    <div class="mx-auto max-w-[820px]">
+      <div class="eyebrow fu">Tarification / niveaux</div>
+      <h2 class="h-section fu">Participation simple ou partenariat.</h2>
+      <p class="mt-5 text-[16px] leading-[1.7] text-ink fu">
+        Participation simple sans niveau de partenariat possible. Pour
+        bénéficier de visibilité, contreparties et présence sur tous les
+        supports nationaux, consultez les niveaux de partenariat.
+      </p>
+      <div class="mt-7 fu">
+        <a href="/partenaires" class="btn btn-outline">
+          Voir les niveaux de partenariat <ArrowRight class="h-4 w-4" />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  {/* BLOC #1 PREUVE */}
+  <PreuveSociale />
+
+  {/* BLOC #5 LOGOS ENTREPRISES PILOTE */}
+  <BandeauPartenaires
+    title="Entreprises du pilote Cap Talent Lab"
+    ctaLabel="Participer en tant qu'entreprise"
+    ctaHref="/contact"
+    count={10}
+    note="Logos des 20+ entreprises mobilisées en janvier 2026 — à rassembler."
+  />
+
+  {/* FAQ */}
+  <Faq eyebrow="FAQ Entreprises" title="Vos questions" items={faq} />
+
+  {/* CTA FINAL */}
+  <section class="section on-dark bg-navy">
+    <div class="mx-auto max-w-[760px] text-center">
+      <h2 class="h-section fu">Recrutez avec nous.</h2>
+      <div class="mt-8 fu">
+        <a href="/contact" class="btn btn-primary">
+          S'inscrire comme entreprise recruteuse <ArrowRight class="h-4 w-4" />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <Newsletter />
+</BaseLayout>

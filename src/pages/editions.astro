@@ -1,0 +1,151 @@
+---
+// Page Éditions — vue d'ensemble des 6 villes. Doc 02 §6.
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHero from '@/components/PageHero.astro';
+import Card from '@/components/Card.astro';
+import Newsletter from '@/components/Newsletter.astro';
+import { ArrowRight } from '@lucide/astro';
+import { nationalCalendar, program } from '@/config/site';
+---
+
+<BaseLayout
+  title="Éditions"
+  description="6 villes. 12 mois. Un programme national. Chaque édition adaptée à son territoire."
+>
+  <PageHero
+    eyebrow="Les éditions"
+    title={`${program.citiesCount} villes. ${program.duration}. <span class="text-sky">Un programme national</span>.`}
+    subtitle="Chaque édition est adaptée à son territoire. Toutes partagent la même méthode."
+    ghost="ÉDITIONS"
+  />
+
+  {/* CARTE INTERACTIVE — placeholder */}
+  <section class="section bg-white">
+    <div class="mx-auto max-w-[1100px]">
+      <div class="eyebrow fu">Carte d'Haïti</div>
+      <h2 class="h-section fu">Six pins, un déploiement séquentiel.</h2>
+      <div
+        class="mt-8 flex aspect-[16/9] items-center justify-center rounded-[14px] border border-dashed border-navy/15 bg-section fu"
+      >
+        <span
+          class="px-6 text-center text-[12px] font-semibold uppercase tracking-[0.14em] text-navy/25"
+        >
+          Carte interactive d'Haïti — 6 pins cliquables (animation séquentielle) — à intégrer
+        </span>
+      </div>
+    </div>
+  </section>
+
+  {/* GRILLE DES 6 ÉDITIONS */}
+  <section class="section bg-section">
+    <div class="mx-auto max-w-[1200px]">
+      <div class="eyebrow fu">Les 6 éditions</div>
+      <h2 class="h-section fu">Une grille détaillée.</h2>
+      <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          nationalCalendar.map((c, i) => {
+            const isLinked = !!c.url;
+            const Wrapper = isLinked ? 'a' : 'div';
+            return (
+              <Wrapper
+                href={c.url}
+                {...(isLinked ? { target: '_blank', rel: 'noopener' } : {})}
+                class:list={[
+                  'card flex flex-col fu',
+                  i && `fu-d${(i % 3) + 1}`,
+                ]}
+              >
+                <div
+                  class="flex aspect-[16/10] items-center justify-center border-b border-line bg-section"
+                  aria-hidden="true"
+                >
+                  <span class="text-[10px] font-semibold uppercase tracking-[0.12em] text-navy/20">
+                    Photo emblématique — {c.city}
+                  </span>
+                </div>
+                <div class="flex flex-1 flex-col p-6">
+                  <div class="flex items-start justify-between gap-2">
+                    <h3
+                      class="font-display text-[20px] font-bold text-navy"
+                      style="font-family: var(--font-display);"
+                    >
+                      📍 {c.city}
+                    </h3>
+                    {!isLinked && (
+                      <span class="rounded-[3px] bg-navy/5 px-2 py-0.5 text-[9px] font-bold uppercase tracking-[0.12em] text-muted">
+                        Bientôt
+                      </span>
+                    )}
+                  </div>
+                  <span class="mt-1 text-[13px] font-semibold text-orange">
+                    {c.dateLabel}
+                  </span>
+                  <p class="mt-3 text-[13px] leading-[1.55] text-ink">{c.note}</p>
+                  <p class="mt-4 text-[12px] italic text-muted">
+                    [Spécificité régionale — pourquoi cette ville — à
+                    développer avec ZLC]
+                  </p>
+                  <div class="mt-auto pt-5">
+                    {isLinked ? (
+                      <span class="inline-flex items-center gap-1.5 text-[12px] font-semibold uppercase tracking-[0.08em] text-sky">
+                        Voir le site dédié <ArrowRight class="h-3.5 w-3.5" />
+                      </span>
+                    ) : (
+                      <a
+                        href="#alerte"
+                        class="inline-flex items-center gap-1.5 text-[12px] font-semibold uppercase tracking-[0.08em] text-navy hover:text-sky"
+                      >
+                        Soyez informé du lancement
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </Wrapper>
+            );
+          })
+        }
+      </div>
+    </div>
+  </section>
+
+  {/* PRINCIPE D'ADAPTATION LOCALE */}
+  <section class="section bg-white">
+    <div class="mx-auto max-w-[820px]">
+      <div class="eyebrow fu">Adaptation locale</div>
+      <h2 class="h-section fu">
+        Une méthode commune, des adaptations territoriales.
+      </h2>
+      <ul class="mt-8 flex flex-col gap-4 text-[16px] leading-[1.7] text-ink fu">
+        <li class="flex gap-3">
+          <span
+            class="mt-2 block h-2 w-2 shrink-0 rounded-full bg-sky"
+            aria-hidden="true"></span>
+          <span>Chaque ville a ses secteurs économiques dominants.</span>
+        </li>
+        <li class="flex gap-3">
+          <span
+            class="mt-2 block h-2 w-2 shrink-0 rounded-full bg-sky"
+            aria-hidden="true"></span>
+          <span>
+            Le programme s'adapte (ateliers, partenaires locaux, conférenciers).
+          </span>
+        </li>
+        <li class="flex gap-3">
+          <span
+            class="mt-2 block h-2 w-2 shrink-0 rounded-full bg-sky"
+            aria-hidden="true"></span>
+          <span>
+            Mais la méthode reste identique — comparabilité, reproductibilité.
+          </span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <div id="alerte">
+    <Newsletter
+      title="Soyez informé du lancement"
+      text="Recevez une alerte dès l'ouverture de la prochaine édition (Port-au-Prince, Gonaïves, Jacmel, Port-de-Paix)."
+    />
+  </div>
+</BaseLayout>

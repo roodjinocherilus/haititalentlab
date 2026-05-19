@@ -1,0 +1,204 @@
+---
+// Page Presse — salle de presse nationale. Doc 02 §10.
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHero from '@/components/PageHero.astro';
+import Card from '@/components/Card.astro';
+import { ArrowRight, Download, Mic } from '@lucide/astro';
+import { contacts, ecosystem } from '@/config/site';
+
+const presseContact = contacts.find((c) => c.audience === 'Presse');
+---
+
+<BaseLayout
+  title="Presse"
+  description="Espace Presse Haiti Talent Lab — contact presse, dossiers, communiqués, kit médias, retombées."
+>
+  <PageHero
+    eyebrow="Presse"
+    title={'Espace <span class="text-sky">presse</span>'}
+    subtitle="Tous les éléments pour couvrir Haiti Talent Lab."
+    ghost="MÉDIAS"
+  />
+
+  {/* CONTACT PRESSE */}
+  <section class="section bg-white">
+    <div class="mx-auto max-w-[820px]">
+      <div class="eyebrow fu">Contact presse</div>
+      <h2 class="h-section fu">Une question ? Une interview ?</h2>
+      {
+        presseContact && (
+          <div class="mt-8 fu">
+            <Card accent="orange">
+              <p class="text-[15px] font-semibold text-navy">{presseContact.name}</p>
+              <a
+                href={`mailto:${presseContact.email}`}
+                class="mt-1 block text-[15px] font-medium text-sky hover:underline"
+              >
+                {presseContact.email}
+              </a>
+              <p class="mt-1 text-[14px] text-muted">{presseContact.phone}</p>
+            </Card>
+          </div>
+        )
+      }
+      <div class="mt-7 flex flex-wrap gap-3 fu">
+        <a href="/contact" class="btn btn-primary">
+          Demander une interview <ArrowRight class="h-4 w-4" />
+        </a>
+        <a href="/contact" class="btn btn-outline">
+          Demander des visuels
+        </a>
+      </div>
+    </div>
+  </section>
+
+  {/* DOSSIERS DE PRESSE */}
+  <section class="section bg-section">
+    <div class="mx-auto max-w-[1100px]">
+      <div class="eyebrow fu">Dossiers de presse</div>
+      <h2 class="h-section fu">À télécharger.</h2>
+      <div class="mt-9 grid gap-5 md:grid-cols-3">
+        {
+          [
+            { t: 'Dossier de presse Haiti Talent Lab', s: 'National' },
+            { t: 'Dossier de presse Cap Talent Lab', s: 'Pilote' },
+            { t: 'Dossier de presse Cayes Talent Lab', s: 'À venir' },
+          ].map((d, i) => (
+            <Card class={`fu ${i ? `fu-d${i}` : ''}`}>
+              <span class="text-[11px] font-semibold uppercase tracking-[0.14em] text-orange">
+                {d.s}
+              </span>
+              <h3
+                class="mt-2 font-display text-[18px] font-bold text-navy"
+                style="font-family: var(--font-display);"
+              >
+                {d.t}
+              </h3>
+              <span class="mt-5 inline-flex items-center gap-2 text-[13px] font-semibold text-muted">
+                <Download class="h-4 w-4" /> PDF — à venir
+              </span>
+            </Card>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  {/* COMMUNIQUÉS DE PRESSE */}
+  <section class="section bg-white">
+    <div class="mx-auto max-w-[820px]">
+      <div class="eyebrow fu">Communiqués de presse</div>
+      <h2 class="h-section fu">Chronologie inversée.</h2>
+      <p class="mt-5 text-[15px] italic text-muted fu">
+        [Liste chronologique inversée — aucun communiqué publié pour
+        l'instant. Format : Date · Titre du communiqué — Télécharger PDF.]
+      </p>
+    </div>
+  </section>
+
+  {/* KIT MÉDIAS */}
+  <section class="section bg-section">
+    <div class="mx-auto max-w-[1100px]">
+      <div class="eyebrow fu">Kit médias</div>
+      <h2 class="h-section fu">Logos, photos, vidéos, biographies.</h2>
+      <div class="mt-9 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+        {
+          [
+            'Logos officiels (PNG, SVG, sombres et clairs)',
+            'Photos haute résolution',
+            'Vidéos institutionnelles',
+            'Biographies équipe',
+          ].map((it, i) => (
+            <Card class={`fu ${i ? `fu-d${i}` : ''}`}>
+              <span class="text-[11px] font-semibold uppercase tracking-[0.14em] text-orange">
+                À fournir
+              </span>
+              <p class="mt-3 text-[14px] font-medium text-navy">{it}</p>
+            </Card>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  {/* RETOMBÉES MÉDIATIQUES */}
+  <section class="section bg-white">
+    <div class="mx-auto max-w-[1100px]">
+      <div class="eyebrow fu">Retombées médiatiques</div>
+      <h2 class="h-section fu">Articles et reportages publiés.</h2>
+      <div class="mt-9 grid gap-5 md:grid-cols-2 lg:grid-cols-3 fu">
+        {
+          Array.from({ length: 6 }).map(() => (
+            <Card>
+              <div
+                class="h-9 w-24 rounded-[4px] border border-dashed border-navy/15 bg-section"
+                aria-hidden="true"
+              />
+              <p class="mt-4 text-[14px] font-semibold text-navy">
+                [Titre de l'article]
+              </p>
+              <p class="mt-1 text-[12px] text-muted">[Média] · [Date]</p>
+              <a
+                href="#"
+                class="mt-3 inline-flex items-center gap-1.5 text-[12px] font-semibold text-sky hover:underline"
+              >
+                Lire <ArrowRight class="h-3.5 w-3.5" />
+              </a>
+            </Card>
+          ))
+        }
+      </div>
+      <p class="mt-4 text-[12px] italic text-muted fu">
+        À référencer au fil des publications.
+      </p>
+    </div>
+  </section>
+
+  {/* PRISES DE PAROLE */}
+  <section class="section bg-section">
+    <div class="mx-auto max-w-[1100px]">
+      <div class="eyebrow fu">Prises de parole</div>
+      <h2 class="h-section fu">Vidéos, interviews, podcasts.</h2>
+      <div class="mt-9 grid gap-5 md:grid-cols-3 fu">
+        {
+          [0, 1, 2].map((i) => (
+            <Card class={i ? `fu-d${i}` : ''}>
+              <div
+                class="flex aspect-video items-center justify-center rounded-[8px] bg-navy/5"
+                aria-hidden="true"
+              >
+                <Mic class="h-7 w-7 text-navy/30" />
+              </div>
+              <p class="mt-4 text-[14px] font-semibold text-navy">
+                [Titre intervention]
+              </p>
+              <p class="mt-1 text-[12px] text-muted">
+                [Woodmy JB / Équipe ZLC]
+              </p>
+            </Card>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  {/* RENVOI HUB */}
+  <section class="section on-dark bg-navy">
+    <div class="mx-auto max-w-[760px] text-center">
+      <p class="text-[17px] leading-[1.7] text-white/65 fu">
+        Pour les sujets liés à la plateforme Haiti Talent Hub, contactez la
+        salle de presse du Hub.
+      </p>
+      <div class="mt-7 fu">
+        <a
+          href={ecosystem.hub}
+          target="_blank"
+          rel="noopener"
+          class="btn btn-outline on-dark"
+        >
+          haititalenthub.com <ArrowRight class="h-4 w-4" />
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

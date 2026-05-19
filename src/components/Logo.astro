@@ -1,0 +1,38 @@
+---
+/**
+ * Logo Haiti Talent Lab — PLACEHOLDER wordmark Space Grotesk.
+ * Le vrai logo officiel reste à créer (🔴 doc 01 §6 « Logo Haiti
+ * Talent Lab — À créer »).
+ */
+import { site } from '@/config/site';
+
+interface Props {
+  tone?: 'light' | 'dark';
+  /** Taille de référence (px) — wordmark adapté typographiquement. */
+  height?: number;
+  class?: string;
+}
+
+const { tone = 'light', class: className = '' } = Astro.props;
+
+const word = tone === 'dark' ? 'text-navy' : 'text-white';
+---
+
+<a
+  href="/"
+  class:list={['group inline-flex items-center gap-2.5', className]}
+  aria-label={`${site.name} — accueil`}
+>
+  <span
+    class="block h-3.5 w-3.5 shrink-0 rounded-[2px] bg-orange transition-transform group-hover:scale-110"
+    aria-hidden="true"></span>
+  <span
+    class:list={[
+      'whitespace-nowrap text-[15px] font-bold uppercase tracking-[0.02em] sm:text-[17px]',
+      word,
+    ]}
+    style="font-family: var(--font-display); letter-spacing: -0.005em;"
+  >
+    Haiti <span class="text-sky">Talent</span> Lab
+  </span>
+</a>

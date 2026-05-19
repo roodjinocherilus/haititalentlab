@@ -1,0 +1,179 @@
+---
+// Page Programme — méthode + ambition nationale. Doc 02 §4. Copy verbatim.
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHero from '@/components/PageHero.astro';
+import TimelineEvent from '@/components/TimelineEvent.astro';
+import Card from '@/components/Card.astro';
+import Newsletter from '@/components/Newsletter.astro';
+import { ArrowRight, Download } from '@lucide/astro';
+import { pilot, program } from '@/config/site';
+
+const methode = [
+  {
+    t: 'Présélection',
+    d: 'Candidats filtrés par formulaire structuré. Critères, process et durée définis avec les recruteurs partenaires.',
+  },
+  {
+    t: 'Préparation',
+    d: "Ateliers et simulations d'entretien à J-15. Intervenants ZLC et invités sectoriels.",
+  },
+  {
+    t: 'Dialogue',
+    d: "Panel d'experts et recruteurs en public — sujets adaptés aux dynamiques économiques locales.",
+  },
+  {
+    t: 'Rencontres',
+    d: 'Entretiens directs et structurés pendant 2 jours, puis suivi post-événement.',
+  },
+];
+
+const cycle = [
+  { tag: 'J-90', title: 'Annonce locale, conférence de presse' },
+  { tag: 'J-60', title: 'Ouverture candidatures' },
+  { tag: 'J-30', title: 'Mobilisation entreprises' },
+  { tag: 'J-15', title: 'Clôture candidatures, présélection' },
+  { tag: 'J', title: 'Événement (2 jours)' },
+  { tag: 'J+15', title: 'Bilan, suivi placements' },
+  { tag: 'J+30', title: 'Rapport public' },
+];
+---
+
+<BaseLayout
+  title="Programme"
+  description="Le programme Haiti Talent Lab — une méthode validée, un déploiement national, des résultats mesurables."
+>
+  <PageHero
+    eyebrow="Le programme"
+    title={'Le programme <span class="text-sky">Haiti Talent Lab</span>'}
+    subtitle="Une méthode validée, un déploiement national, des résultats mesurables."
+    ghost="PROGRAMME"
+  />
+
+  {/* INTRO */}
+  <section class="section bg-white">
+    <div class="mx-auto max-w-[820px]">
+      <p class="text-[18px] leading-[1.75] text-ink fu">
+        Le Haiti Talent Lab n'a pas été inventé sur un coin de table. C'est la
+        version nationale d'un dispositif déjà testé en conditions réelles :
+        le <strong class="text-navy">{pilot.name}</strong>, organisé en janvier
+        2026 au {pilot.city}. En deux jours, 200 candidatures recueillies, 100
+        candidats présélectionnés, 20+ entreprises mobilisées, 4,9 / 5 de
+        satisfaction.
+      </p>
+      <p class="mt-5 text-[18px] leading-[1.75] text-ink fu">
+        Forte de cette validation, <strong class="text-navy">Zero Loss
+        Consulting</strong> déploie aujourd'hui le programme à l'échelle
+        nationale : {program.citiesCount} villes, {program.duration}, un seul
+        objectif — connecter durablement les talents haïtiens aux opportunités
+        réelles.
+      </p>
+    </div>
+  </section>
+
+  {/* L'AMBITION NATIONALE */}
+  <section class="section bg-section">
+    <div class="mx-auto max-w-[1100px]">
+      <div class="eyebrow fu">L'ambition nationale</div>
+      <h2 class="h-section fu">Un programme structuré, à l'échelle d'Haïti.</h2>
+      <div class="mt-10 grid gap-5 sm:grid-cols-3">
+        {
+          [
+            { v: program.citiesCount, l: 'Villes' },
+            { v: program.duration, l: 'Durée' },
+            { v: program.budgetLabel, l: 'Budget à mobiliser' },
+          ].map((s, i) => (
+            <Card class={`text-center fu ${i ? `fu-d${i}` : ''}`}>
+              <div
+                class="font-display text-[44px] font-extrabold leading-none text-navy"
+                style="font-family: var(--font-display);"
+              >
+                {s.v}
+              </div>
+              <div class="mt-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-muted">
+                {s.l}
+              </div>
+            </Card>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  {/* MÉTHODE EN 4 ÉTAPES */}
+  <section class="section bg-white">
+    <div class="mx-auto max-w-[1100px]">
+      <div class="eyebrow fu">La méthode en 4 étapes</div>
+      <h2 class="h-section fu">Un dispositif éprouvé, reproductible.</h2>
+      <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          methode.map((m, i) => (
+            <Card accent="sky" class={`fu ${i ? `fu-d${i}` : ''}`}>
+              <span
+                class="font-display text-[34px] font-extrabold text-navy/15"
+                style="font-family: var(--font-display);"
+              >
+                0{i + 1}
+              </span>
+              <h3
+                class="mt-3 font-display text-[18px] font-bold uppercase tracking-[0.04em] text-navy"
+                style="font-family: var(--font-display);"
+              >
+                {m.t}
+              </h3>
+              <p class="mt-2 text-[14px] leading-[1.6] text-ink">{m.d}</p>
+            </Card>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  {/* CYCLE D'UNE ÉDITION */}
+  <section class="section bg-section">
+    <div class="mx-auto max-w-[760px]">
+      <div class="eyebrow fu">Le cycle d'une édition</div>
+      <h2 class="h-section fu">De l'annonce au rapport public.</h2>
+      <div class="mt-10">
+        <TimelineEvent steps={cycle} tone="light" numbered={false} />
+      </div>
+    </div>
+  </section>
+
+  {/* GOUVERNANCE & ÉQUIPE */}
+  <section class="section bg-white">
+    <div class="mx-auto max-w-[820px]">
+      <div class="eyebrow fu">Gouvernance & équipe</div>
+      <h2 class="h-section fu">Porté par Zero Loss Consulting.</h2>
+      <p class="mt-5 text-[16px] leading-[1.75] text-ink fu">
+        Le programme est conçu, opéré et financé en Haïti. La gouvernance
+        opérationnelle est assurée par Zero Loss Consulting, sous la direction
+        de Woodmy Jean Baptiste.
+      </p>
+      <div class="mt-7 fu">
+        <a href="/a-propos" class="btn btn-outline">
+          Découvrir l'équipe <ArrowRight class="h-4 w-4" />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  {/* DOWNLOAD */}
+  <section class="section on-dark bg-navy">
+    <div class="mx-auto max-w-[760px] text-center">
+      <div class="eyebrow justify-center fu">Aller plus loin</div>
+      <h2 class="h-section fu">Téléchargez la note de cadrage.</h2>
+      <p class="mt-5 text-[16px] leading-[1.7] text-white/55 fu">
+        Le dossier complet du programme — méthode, gouvernance, calendrier,
+        budget — sera téléchargeable ici.
+      </p>
+      <div class="mt-8 fu">
+        <span class="btn btn-outline on-dark cursor-default opacity-60">
+          <Download class="h-4 w-4" />
+          Note de cadrage (PDF) — à venir
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <Newsletter />
+</BaseLayout>

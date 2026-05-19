@@ -1,0 +1,283 @@
+---
+// Page Partenaires — PAGE STRATÉGIQUE pour mobiliser 1,5 M USD. Doc 02 §9.
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHero from '@/components/PageHero.astro';
+import PartenariatNiveaux from '@/components/PartenariatNiveaux.astro';
+import TimelineEvent from '@/components/TimelineEvent.astro';
+import Card from '@/components/Card.astro';
+import Newsletter from '@/components/Newsletter.astro';
+import { ArrowRight, Download, Calendar } from '@lucide/astro';
+import { contacts, pilot, program } from '@/config/site';
+
+const arguments_ = [
+  {
+    t: 'Un programme déjà validé',
+    d: `Chiffres pilote ${pilot.name} : +200 candidatures, +100 présélectionnés, 20+ entreprises, 4,9 / 5 satisfaction.`,
+  },
+  {
+    t: 'Une portée nationale',
+    d: `${program.citiesCount} villes, ${program.duration} de déploiement coordonné.`,
+  },
+  {
+    t: 'Un dispositif structuré',
+    d: 'Méthode reproductible, gouvernance opérationnelle, reporting trimestriel.',
+  },
+  {
+    t: 'Un retour mesurable',
+    d: 'KPI partagés, indicateurs de placement, rapports publics.',
+  },
+  {
+    t: 'Une cause à fort impact',
+    d: 'Contribution mesurable à la trajectoire emploi des jeunes haïtiens.',
+  },
+];
+
+const apports = [
+  {
+    t: 'Visibilité',
+    d: 'Logos sur tous supports, médias, événements — local et national.',
+  },
+  {
+    t: 'Talent acquisition',
+    d: 'Accès prioritaire au vivier qualifié, présélection assurée.',
+  },
+  {
+    t: 'RSE & impact',
+    d: "Contribution mesurable à l'employabilité, reporting d'impact.",
+  },
+  {
+    t: 'Contenu de marque',
+    d: 'Vidéos, prises de parole, études de cas co-produites.',
+  },
+];
+
+const projections = [
+  { v: program.citiesCount, l: 'Villes couvertes' },
+  { v: '1 000+', l: 'Candidats inscrits projetés' },
+  { v: '150+', l: 'Entreprises mobilisées projetées' },
+  { v: '300+', l: 'Placements projetés' },
+];
+
+const processus = [
+  { title: 'Téléchargez le dossier de partenariat' },
+  { title: 'Prenez rendez-vous avec notre équipe' },
+  { title: 'Signez la convention de partenariat' },
+];
+
+const partenariats = contacts.find((c) => c.audience === 'Partenariats');
+---
+
+<BaseLayout
+  title="Partenaires"
+  description="Devenez partenaire du premier programme national d'employabilité d'Haïti. 1,5 M USD à mobiliser pour transformer durablement le marché du travail haïtien."
+>
+  <PageHero
+    eyebrow="Partenaires"
+    title={'Devenez partenaire du <span class="text-sky">premier programme national</span> d\'employabilité d\'Haïti.'}
+    subtitle={`${program.budgetLabel} à mobiliser sur ${program.duration} pour déployer un dispositif validé, mesurable, et à fort impact social. Une opportunité unique de positionnement sur un sujet stratégique pour Haïti.`}
+    ghost={program.budgetLabel}
+    ctas={[
+      { label: 'Télécharger le dossier de partenariat (PDF)', href: '#dossier' },
+      { label: 'Prendre rendez-vous', href: '#rdv', variant: 'outline' },
+    ]}
+  />
+
+  {/* POURQUOI VOUS ASSOCIER */}
+  <section class="section bg-white">
+    <div class="mx-auto max-w-[1100px]">
+      <div class="eyebrow fu">Pourquoi vous associer à Haiti Talent Lab</div>
+      <h2 class="h-section fu">Cinq raisons fortes.</h2>
+      <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          arguments_.map((a, i) => (
+            <Card accent="orange" class={`fu ${(i % 3) ? `fu-d${i % 3}` : ''}`}>
+              <span
+                class="font-display text-[34px] font-extrabold text-navy/15"
+                style="font-family: var(--font-display);"
+              >
+                0{i + 1}
+              </span>
+              <h3
+                class="mt-3 font-display text-[18px] font-bold text-navy"
+                style="font-family: var(--font-display);"
+              >
+                {a.t}
+              </h3>
+              <p class="mt-2 text-[14px] leading-[1.6] text-ink">{a.d}</p>
+            </Card>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  {/* CE QUE LE PROGRAMME APPORTE À VOTRE MARQUE */}
+  <section class="section bg-section">
+    <div class="mx-auto max-w-[1100px]">
+      <div class="eyebrow fu">Ce que le programme apporte à votre marque</div>
+      <h2 class="h-section fu">Quatre apports concrets.</h2>
+      <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          apports.map((a, i) => (
+            <Card class={`fu ${i ? `fu-d${i}` : ''}`}>
+              <h3
+                class="font-display text-[18px] font-bold text-navy"
+                style="font-family: var(--font-display);"
+              >
+                {a.t}
+              </h3>
+              <p class="mt-2 text-[14px] leading-[1.6] text-ink">{a.d}</p>
+            </Card>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  {/* BLOC #3 NIVEAUX DE PARTENARIAT */}
+  <PartenariatNiveaux />
+
+  {/* CHIFFRES PROJETÉS */}
+  <section class="section on-dark bg-navy">
+    <div class="mx-auto max-w-[1200px]">
+      <div class="eyebrow fu">Chiffres projetés sur {program.duration}</div>
+      <h2 class="h-section fu">Projection à l'échelle nationale.</h2>
+      <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          projections.map((p, i) => (
+            <div
+              class:list={[
+                'rounded-[12px] border border-white/10 bg-white/[0.03] p-7 text-center fu',
+                i && `fu-d${i % 3}`,
+              ]}
+            >
+              <div
+                class="font-display text-[44px] font-extrabold leading-none text-white"
+                style="font-family: var(--font-display);"
+              >
+                {p.v}
+              </div>
+              <div class="mt-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/55">
+                {p.l}
+              </div>
+            </div>
+          ))
+        }
+      </div>
+      <p class="mt-6 text-[12px] italic text-white/45 fu">
+        Projections basées sur l'extrapolation des résultats du pilote
+        Cap Talent Lab. Couverture médiatique nationale et internationale visée.
+      </p>
+    </div>
+  </section>
+
+  {/* ÉTUDE DE CAS — CAP TALENT LAB */}
+  <section class="section bg-section">
+    <div class="mx-auto max-w-[1000px]">
+      <div class="eyebrow fu">Étude de cas — Cap Talent Lab</div>
+      <h2 class="h-section fu">Ce qu'a apporté le pilote à ses partenaires.</h2>
+      <div class="mt-9 grid gap-6 md:grid-cols-2 fu">
+        <Card>
+          <h3
+            class="font-display text-[16px] font-bold uppercase tracking-[0.08em] text-orange"
+            style="font-family: var(--font-display);"
+          >
+            Chiffres clés
+          </h3>
+          <ul class="mt-4 flex flex-col gap-2 text-[14px] text-navy">
+            <li>• +200 candidatures recueillies</li>
+            <li>• +100 présélectionnés</li>
+            <li>• 20+ entreprises mobilisées</li>
+            <li>• 4,9 / 5 de satisfaction</li>
+            <li>• +10 % de placements</li>
+          </ul>
+        </Card>
+        <Card>
+          <h3
+            class="font-display text-[16px] font-bold uppercase tracking-[0.08em] text-orange"
+            style="font-family: var(--font-display);"
+          >
+            Témoignage partenaire
+          </h3>
+          <p class="mt-4 text-[14px] italic leading-[1.7] text-ink">
+            « [Témoignage d'un partenaire du pilote — à recueillir auprès de ZLC] »
+          </p>
+          <p class="mt-3 text-[13px] font-semibold text-navy">
+            [Entreprise / institution]
+          </p>
+        </Card>
+      </div>
+      <p class="mt-4 text-[12px] italic text-muted fu">
+        Logos partenaires + chiffres + témoignage — à compléter.
+      </p>
+    </div>
+  </section>
+
+  {/* PROCESSUS POUR DEVENIR PARTENAIRE */}
+  <section id="dossier" class="section bg-white">
+    <div class="mx-auto max-w-[760px]">
+      <div class="eyebrow fu">Processus pour devenir partenaire</div>
+      <h2 class="h-section fu">Trois étapes simples.</h2>
+      <div class="mt-10">
+        <TimelineEvent steps={processus} tone="light" />
+      </div>
+      <div class="mt-8 flex flex-wrap gap-3 fu">
+        <span class="btn btn-primary cursor-default opacity-70">
+          <Download class="h-4 w-4" />
+          Télécharger le dossier (PDF) — à venir
+        </span>
+        <a href="#rdv" class="btn btn-outline">
+          <Calendar class="h-4 w-4" /> Prendre rendez-vous
+        </a>
+      </div>
+    </div>
+  </section>
+
+  {/* CONTACT DIRECT PARTENARIATS */}
+  <section id="rdv" class="section bg-section">
+    <div class="mx-auto max-w-[820px]">
+      <div class="eyebrow fu">Contact partenariats</div>
+      <h2 class="h-section fu">Parlons-nous directement.</h2>
+      {
+        partenariats && (
+          <div class="mt-8 fu">
+            <Card accent="sky">
+              <p class="text-[15px] font-semibold text-navy">{partenariats.name}</p>
+              <a
+                href={`mailto:${partenariats.email}`}
+                class="mt-1 block text-[15px] font-medium text-sky hover:underline"
+              >
+                {partenariats.email}
+              </a>
+              <p class="mt-1 text-[14px] text-muted">{partenariats.phone}</p>
+            </Card>
+          </div>
+        )
+      }
+      <div class="mt-7 fu">
+        <a href="/contact" class="btn btn-primary">
+          Formulaire qualifié partenariats <ArrowRight class="h-4 w-4" />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  {/* CTA FINAL */}
+  <section class="section on-dark bg-navy">
+    <div class="mx-auto max-w-[760px] text-center">
+      <h2 class="h-section fu">
+        Mobilisons {program.budgetLabel} pour Haïti.
+      </h2>
+      <div class="mt-8 flex flex-wrap justify-center gap-3 fu">
+        <a href="#dossier" class="btn btn-primary">
+          Télécharger le dossier <ArrowRight class="h-4 w-4" />
+        </a>
+        <a href="#rdv" class="btn btn-outline on-dark">
+          Prendre rendez-vous
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <Newsletter />
+</BaseLayout>

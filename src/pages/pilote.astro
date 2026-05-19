@@ -1,0 +1,172 @@
+---
+// Page Pilote — résumé orienté preuve Cap Talent Lab. Doc 02 §5.
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHero from '@/components/PageHero.astro';
+import PreuveSociale from '@/components/PreuveSociale.astro';
+import Card from '@/components/Card.astro';
+import Newsletter from '@/components/Newsletter.astro';
+import { ArrowRight, Play } from '@lucide/astro';
+import { ecosystem, pilot } from '@/config/site';
+---
+
+<BaseLayout
+  title="Pilote"
+  description="Cap Talent Lab — janvier 2026, Cap-Haïtien. Le pilote qui a validé le modèle national."
+>
+  <PageHero
+    eyebrow="Le pilote"
+    title={`${pilot.name} — <span class="text-sky">la preuve qui a tout déclenché</span>`}
+    subtitle={`Janvier 2026, ${pilot.city}, Hôtel Roi Christophe. Le pilote qui a validé le modèle national.`}
+    ghost="PILOTE"
+  />
+
+  {/* PHOTO HERO */}
+  <section class="section bg-white !py-12">
+    <div
+      class="mx-auto flex aspect-[21/9] max-w-[1100px] items-center justify-center rounded-[14px] border border-dashed border-navy/15 bg-section fu"
+    >
+      <span
+        class="px-6 text-center text-[12px] font-semibold uppercase tracking-[0.14em] text-navy/25"
+      >
+        Photo grand format de l'événement Cap Talent Lab — à sourcer auprès de ZLC
+      </span>
+    </div>
+  </section>
+
+  {/* BLOC #1 PREUVE */}
+  <PreuveSociale />
+
+  {/* RÉCIT */}
+  <section class="section bg-white">
+    <div class="mx-auto max-w-[820px]">
+      <div class="eyebrow fu">Le récit</div>
+      <h2 class="h-section fu">Ce qui s'est passé en janvier 2026.</h2>
+      <div class="mt-7 flex flex-col gap-5 text-[17px] leading-[1.75] text-ink">
+        <p class="fu">
+          [Paragraphe 1 — L'idée initiale : pourquoi Cap-Haïtien, ce qui a
+          motivé ZLC à lancer un pilote, le pari de la méthode structurée. À
+          rédiger avec ZLC.]
+        </p>
+        <p class="fu">
+          [Paragraphe 2 — La mobilisation : comment 200 candidatures ont été
+          recueillies en quelques semaines, l'engagement des entreprises
+          locales, le rôle des partenaires institutionnels.]
+        </p>
+        <p class="fu">
+          [Paragraphe 3 — L'événement : deux jours intenses, conférence
+          d'ouverture, panel d'experts, entretiens directs. L'énergie, le
+          niveau des candidats, la qualité des échanges.]
+        </p>
+        <p class="fu">
+          [Paragraphe 4 — Les résultats : 4,9 / 5 de satisfaction, +10 % de
+          placements, et surtout la preuve que le modèle fonctionne.]
+        </p>
+      </div>
+    </div>
+  </section>
+
+  {/* GALERIE PHOTO */}
+  <section class="section bg-section">
+    <div class="mx-auto max-w-[1100px]">
+      <div class="eyebrow fu">Galerie</div>
+      <h2 class="h-section fu">Le pilote en images.</h2>
+      <div
+        class="mt-9 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-3 fu"
+      >
+        {
+          Array.from({ length: 9 }).map(() => (
+            <div class="flex aspect-[4/3] items-center justify-center rounded-[10px] border border-dashed border-navy/15 bg-white">
+              <span class="text-[10px] font-semibold uppercase tracking-[0.12em] text-navy/20">
+                Photo
+              </span>
+            </div>
+          ))
+        }
+      </div>
+      <p class="mt-4 text-[12px] italic text-muted fu">
+        6 à 9 photos de l'événement — à sourcer auprès de ZLC.
+      </p>
+    </div>
+  </section>
+
+  {/* TÉMOIGNAGES */}
+  <section class="section bg-white">
+    <div class="mx-auto max-w-[1100px]">
+      <div class="eyebrow fu">Témoignages</div>
+      <h2 class="h-section fu">Ils ont vécu Cap Talent Lab.</h2>
+      <div class="mt-10 grid gap-6 md:grid-cols-3">
+        {
+          [
+            { who: '[Entreprise recruteuse]' },
+            { who: '[Candidat placé]' },
+            { who: '[Intervenant / partenaire]' },
+          ].map((t, i) => (
+            <Card class={`fu ${i ? `fu-d${i}` : ''}`}>
+              <p class="text-[14px] italic leading-[1.7] text-ink">
+                « [Citation courte à recueillir auprès de ZLC] »
+              </p>
+              <p class="mt-4 text-[13px] font-semibold text-navy">{t.who}</p>
+              <p class="text-[12px] text-muted">[Nom, fonction]</p>
+            </Card>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  {/* VIDÉO RÉCAP */}
+  <section class="section bg-section">
+    <div class="mx-auto max-w-[920px]">
+      <div class="eyebrow fu">Vidéo récap</div>
+      <h2 class="h-section fu">Le pilote en mouvement.</h2>
+      <div
+        class="mt-8 flex aspect-video items-center justify-center rounded-[14px] border border-dashed border-navy/15 bg-white fu"
+      >
+        <div class="flex flex-col items-center gap-3">
+          <span
+            class="grid h-16 w-16 place-items-center rounded-full bg-navy/5 text-navy"
+            aria-hidden="true"
+          >
+            <Play class="h-7 w-7" />
+          </span>
+          <span class="text-[11px] font-semibold uppercase tracking-[0.14em] text-navy/40">
+            Vidéo récap — à fournir
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ET APRÈS ? */}
+  <section class="section on-dark bg-navy">
+    <div class="mx-auto max-w-[820px] text-center">
+      <div class="eyebrow justify-center fu">Et après ?</div>
+      <h2 class="h-section fu">Le mouvement continue.</h2>
+      <p class="mt-5 text-[17px] leading-[1.7] text-white/65 fu">
+        Cap Talent Lab continue : la 2ᵉ édition se tient en septembre 2026.
+        Et le modèle se déploie nationalement à partir de juillet 2026 — Les
+        Cayes.
+      </p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3 fu">
+        <a
+          href={ecosystem.capTalentLab}
+          target="_blank"
+          rel="noopener"
+          class="btn btn-outline on-dark"
+        >
+          Voir le site complet captalentlab.com <ArrowRight class="h-4 w-4" />
+        </a>
+        <a
+          href={ecosystem.cayesTalentLab}
+          target="_blank"
+          rel="noopener"
+          class="btn btn-primary"
+        >
+          Découvrir Cayes Talent Lab <ArrowRight class="h-4 w-4" />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <Newsletter />
+</BaseLayout>
