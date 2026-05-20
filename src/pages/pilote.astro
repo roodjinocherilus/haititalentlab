@@ -1,23 +1,20 @@
 ---
 // Page Pilote — résumé orienté preuve Cap Talent Lab. Doc 02 §5.
+// Volontairement court : c'est captalentlab.com qui porte le détail
+// complet du pilote ; ici on appuie l'ambition nationale et on renvoie.
 import { Image } from 'astro:assets';
 import heroPilote from '@/assets/pilote/cap-talent-lab-hero.jpg';
+import gal1 from '@/assets/pilote/pilote-01.jpg';
+import gal2 from '@/assets/pilote/pilote-06.jpg';
+import gal3 from '@/assets/pilote/pilote-12.jpg';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import PageHero from '@/components/PageHero.astro';
 import PreuveSociale from '@/components/PreuveSociale.astro';
-import Card from '@/components/Card.astro';
 import Newsletter from '@/components/Newsletter.astro';
-import { ArrowRight, Play } from '@lucide/astro';
+import { ArrowRight } from '@lucide/astro';
 import { ecosystem, pilot } from '@/config/site';
 
-// Galerie : import statique de toutes les photos pilote-*.jpg
-// (Astro Image optimise chacune au build : WebP + srcset).
-const galleryModules = import.meta.glob('@/assets/pilote/pilote-*.jpg', {
-  eager: true,
-});
-const galleryImages = Object.keys(galleryModules)
-  .sort()
-  .map((k) => galleryModules[k].default);
+const galleryImages = [gal1, gal2, gal3];
 ---
 
 <BaseLayout
@@ -53,10 +50,10 @@ const galleryImages = Object.keys(galleryModules)
     </figure>
   </section>
 
-  {/* BLOC #1 PREUVE */}
+  {/* BLOC #1 PREUVE — bandeau orange chiffres pilote */}
   <PreuveSociale />
 
-  {/* RÉCIT — texte repris de captalentlab.com (section à propos) */}
+  {/* RÉCIT court — texte « À propos » de captalentlab.com */}
   <section class="section bg-white">
     <div class="mx-auto max-w-[820px]">
       <div class="eyebrow fu">À propos</div>
@@ -85,225 +82,18 @@ const galleryImages = Object.keys(galleryModules)
     </div>
   </section>
 
-  {/* MÉTHODE — 3 étapes repris de captalentlab.com */}
-  <section class="section bg-section">
+  {/* MINI GALERIE — 3 photos seulement, le détail est sur captalentlab.com */}
+  <section class="section bg-section !pt-0">
     <div class="mx-auto max-w-[1100px]">
-      <div class="eyebrow fu">La méthode</div>
-      <h2 class="h-section fu">Trois étapes, une rigueur.</h2>
-      <div class="mt-10 grid gap-5 md:grid-cols-3">
-        {
-          [
-            {
-              num: '01',
-              t: 'Présélection rigoureuse',
-              d: "Appel à candidatures, analyse de CV, entretiens et évaluation des compétences techniques et comportementales.",
-            },
-            {
-              num: '02',
-              t: 'Préparation des talents',
-              d: "Ateliers pratiques, simulations d'entretiens, formation sur les attentes réelles du marché du travail.",
-            },
-            {
-              num: '03',
-              t: 'Rencontres directes',
-              d: 'Entretiens en continu avec les recruteurs et panel public sur le marché du travail dans le Nord.',
-            },
-          ].map((s, i) => (
-            <Card accent="sky" class={'fu ' + (i ? 'fu-d' + i : '')}>
-              <span
-                class="block font-bold text-orange"
-                style="font-family: var(--font-display); font-size: 32px; line-height:1;"
-              >
-                {s.num}
-              </span>
-              <h3
-                class="mt-3 text-[19px] font-bold text-navy"
-                style="font-family: var(--font-display);"
-              >
-                {s.t}
-              </h3>
-              <p class="mt-2.5 text-[14px] leading-[1.6] text-ink">{s.d}</p>
-            </Card>
-          ))
-        }
-      </div>
-    </div>
-  </section>
-
-  {/* DÉROULÉ — programme réel des 2 jours, intervenants nommés */}
-  <section class="section on-dark bg-navy">
-    <div class="mx-auto max-w-[1100px]">
-      <div class="eyebrow fu">Le déroulé</div>
-      <h2 class="h-section fu">Deux jours qui ont marqué le Nord.</h2>
-      <div class="mt-10 grid gap-6 md:grid-cols-2">
-        <article
-          class="fu overflow-hidden rounded-[12px] border border-white/10 bg-white/[0.025]"
-        >
-          <header class="flex items-stretch border-b border-white/10">
-            <div
-              class="flex min-w-[110px] flex-col items-center justify-center bg-orange px-7 py-6"
-            >
-              <span
-                class="font-bold text-white"
-                style="font-family: var(--font-display); font-size: 44px; line-height:1;"
-                >01</span
-              >
-              <span
-                class="mt-1 text-[9px] font-bold uppercase tracking-[0.18em] text-white/70"
-                >Jour</span
-              >
-            </div>
-            <div class="flex flex-1 flex-col justify-center px-7 py-5">
-              <span class="text-[10px] font-semibold uppercase tracking-[0.18em] text-sky">
-                23 janvier 2026 · Soirée
-              </span>
-              <h3
-                class="mt-1 text-[22px] font-bold text-white"
-                style="font-family: var(--font-display);"
-              >
-                Cocktail de lancement
-              </h3>
-            </div>
-          </header>
-          <ul class="flex flex-col gap-3 px-7 py-6">
-            {
-              [
-                "Accueil des invités, partenaires, talents et presse à l'Hôtel Roi Christophe",
-                "Discours d'ouverture par <strong>Woodmy Jean Baptiste</strong>, PDG de Zero Loss Consulting",
-                'Présentation Zero Loss Consulting par <strong>Emmanuel Dubuisson</strong>',
-                "Projection du documentaire d'impact de Zero Loss en Haïti",
-                'Performance acoustique jazz et réseautage entre invités',
-              ].map((item) => (
-                <li class="flex gap-3 text-[13.5px] leading-[1.6] text-white/65">
-                  <span
-                    class="mt-[7px] block h-[7px] w-[7px] shrink-0 rounded-full bg-sky"
-                    aria-hidden="true"
-                  />
-                  <span set:html={item} />
-                </li>
-              ))
-            }
-          </ul>
-        </article>
-        <article
-          class="fu fu-d1 overflow-hidden rounded-[12px] border border-white/10 bg-white/[0.025]"
-        >
-          <header class="flex items-stretch border-b border-white/10">
-            <div
-              class="flex min-w-[110px] flex-col items-center justify-center bg-orange px-7 py-6"
-            >
-              <span
-                class="font-bold text-white"
-                style="font-family: var(--font-display); font-size: 44px; line-height:1;"
-                >02</span
-              >
-              <span
-                class="mt-1 text-[9px] font-bold uppercase tracking-[0.18em] text-white/70"
-                >Jour</span
-              >
-            </div>
-            <div class="flex flex-1 flex-col justify-center px-7 py-5">
-              <span class="text-[10px] font-semibold uppercase tracking-[0.18em] text-sky">
-                24 janvier 2026 · Journée complète
-              </span>
-              <h3
-                class="mt-1 text-[22px] font-bold text-white"
-                style="font-family: var(--font-display);"
-              >
-                Journée opérationnelle
-              </h3>
-            </div>
-          </header>
-          <ul class="flex flex-col gap-3 px-7 py-6">
-            {
-              [
-                'Vision Cap Talent Lab par <strong>Woodmy Jean Baptiste</strong>',
-                'Panel <em>Le marché du travail dans le Nord — réalités, opportunités et compétences recherchées</em> — <strong>Dr. Joaneson Lacour</strong>, <strong>Françoise Zéphir Théophile</strong> (Ets. Novella), <strong>Katie-Flore Fils-Aimé</strong> (BIEN Group)',
-                "Atelier « Simulation d'entretien d'embauche » par <strong>Annie Gustave</strong>, HR Consultant Zero Loss",
-                "Atelier « Être recruté aujourd'hui — compétences, attitude, performance »",
-                'Entretiens directs et continus entre entreprises et talents',
-              ].map((item) => (
-                <li class="flex gap-3 text-[13.5px] leading-[1.6] text-white/65">
-                  <span
-                    class="mt-[7px] block h-[7px] w-[7px] shrink-0 rounded-full bg-sky"
-                    aria-hidden="true"
-                  />
-                  <span set:html={item} />
-                </li>
-              ))
-            }
-          </ul>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  {/* IMPACT QUALITATIF — chiffres repris de captalentlab.com section impact */}
-  <section class="section bg-white">
-    <div class="mx-auto max-w-[1100px]">
-      <div class="eyebrow fu">Ce que ça représente</div>
-      <h2 class="h-section fu">Une preuve que c'est possible.</h2>
-      <p class="mt-5 max-w-[680px] text-[16px] leading-[1.75] text-ink fu">
-        Le Cap Talent Lab a démontré qu'il est possible de structurer la
-        rencontre entre talents et entreprises dans le Grand Nord, de rendre
-        visibles les compétences locales, et de créer un espace utile, concret
-        et reproductible.
-      </p>
-      <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {
-          [
-            {
-              v: '60 %+',
-              l: "des présélectionnés ont accédé à des entretiens",
-            },
-            {
-              v: '100 %',
-              l: "des présélectionnés ont bénéficié d'une préparation",
-            },
-            {
-              v: '30–45 %',
-              l: 'des candidats ont obtenu une opportunité professionnelle',
-            },
-            {
-              v: '+10',
-              l: "secteurs d'activité représentés",
-            },
-          ].map((s, i) => (
-            <Card class={'relative overflow-hidden fu ' + (i ? 'fu-d' + i : '')}>
-              <span
-                class="block font-extrabold text-navy"
-                style="font-family: var(--font-display); font-size: 46px; line-height:1;"
-              >
-                {s.v}
-              </span>
-              <p
-                class="mt-2 text-[11px] font-medium uppercase leading-[1.45] tracking-[0.07em] text-muted"
-              >
-                {s.l}
-              </p>
-            </Card>
-          ))
-        }
-      </div>
-    </div>
-  </section>
-
-  {/* GALERIE PHOTO */}
-  <section class="section bg-section">
-    <div class="mx-auto max-w-[1100px]">
-      <div class="eyebrow fu">Galerie</div>
-      <h2 class="h-section fu">Le pilote en images.</h2>
-      <div
-        class="mt-9 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4 fu"
-      >
+      <div class="grid gap-3 sm:grid-cols-3 fu">
         {
           galleryImages.map((img) => (
-            <figure class="group relative aspect-[4/3] overflow-hidden rounded-[10px] bg-section">
+            <figure class="group relative aspect-[4/3] overflow-hidden rounded-[10px] bg-white">
               <Image
                 src={img}
                 alt="Cap Talent Lab — Cap-Haïtien, janvier 2026"
-                widths={[320, 480]}
-                sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw"
+                widths={[400, 600]}
+                sizes="(min-width: 640px) 33vw, 90vw"
                 loading="lazy"
                 class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
               />
@@ -311,101 +101,21 @@ const galleryImages = Object.keys(galleryModules)
           ))
         }
       </div>
-      <p class="mt-5 text-[12px] italic text-muted fu">
-        {galleryImages.length} photos du pilote Cap Talent Lab (janvier 2026)
-        — extraits de captalentlab.com.
+      <p class="mt-4 text-center text-[12px] italic text-muted fu">
+        Galerie complète, déroulé jour par jour et intervenants sur
+        <a
+          href={ecosystem.capTalentLab}
+          target="_blank"
+          rel="noopener"
+          class="font-semibold text-navy underline-offset-2 hover:underline"
+        >
+          captalentlab.com
+        </a>.
       </p>
     </div>
   </section>
 
-  {/* INTERVENANTS — repris de captalentlab.com (programme J1 + J2) */}
-  <section class="section bg-section">
-    <div class="mx-auto max-w-[1100px]">
-      <div class="eyebrow fu">Ils ont fait le pilote</div>
-      <h2 class="h-section fu">Intervenants & panélistes.</h2>
-      <p class="mt-5 max-w-[640px] text-[16px] leading-[1.7] text-ink fu">
-        Une plénière, deux ateliers et un panel d'experts sur le marché du
-        travail dans le Nord — voix qui ont porté l'édition pilote.
-      </p>
-      <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {
-          [
-            {
-              name: 'Woodmy Jean Baptiste',
-              role: 'PDG, Zero Loss Consulting',
-              tag: "Discours d'ouverture · Vision Cap Talent Lab",
-            },
-            {
-              name: 'Emmanuel Dubuisson',
-              role: 'Zero Loss Consulting',
-              tag: 'Présentation Zero Loss Consulting',
-            },
-            {
-              name: 'Annie Gustave',
-              role: 'HR Consultant, Zero Loss',
-              tag: "Atelier « Simulation d'entretien d'embauche »",
-            },
-            {
-              name: 'Dr. Joaneson Lacour',
-              role: 'Panéliste',
-              tag: 'Panel — Marché du travail dans le Nord',
-            },
-            {
-              name: 'Françoise Zéphir Théophile',
-              role: 'Ets. Novella',
-              tag: 'Panel — Marché du travail dans le Nord',
-            },
-            {
-              name: 'Katie-Flore Fils-Aimé',
-              role: 'BIEN Group',
-              tag: 'Panel — Marché du travail dans le Nord',
-            },
-          ].map((p, i) => (
-            <Card class={'fu ' + (i ? 'fu-d' + (i % 3) : '')}>
-              <span class="block text-[10px] font-semibold uppercase tracking-[0.13em] text-orange">
-                {p.tag}
-              </span>
-              <h3
-                class="mt-3 text-[18px] font-bold text-navy"
-                style="font-family: var(--font-display);"
-              >
-                {p.name}
-              </h3>
-              <p class="mt-1 text-[13px] text-muted">{p.role}</p>
-            </Card>
-          ))
-        }
-      </div>
-      <p class="mt-6 text-[12px] italic text-muted fu">
-        Source : programme officiel captalentlab.com.
-      </p>
-    </div>
-  </section>
-
-  {/* VIDÉO RÉCAP */}
-  <section class="section bg-section">
-    <div class="mx-auto max-w-[920px]">
-      <div class="eyebrow fu">Vidéo récap</div>
-      <h2 class="h-section fu">Le pilote en mouvement.</h2>
-      <div
-        class="mt-8 flex aspect-video items-center justify-center rounded-[14px] border border-dashed border-navy/15 bg-white fu"
-      >
-        <div class="flex flex-col items-center gap-3">
-          <span
-            class="grid h-16 w-16 place-items-center rounded-full bg-navy/5 text-navy"
-            aria-hidden="true"
-          >
-            <Play class="h-7 w-7" />
-          </span>
-          <span class="text-[11px] font-semibold uppercase tracking-[0.14em] text-navy/40">
-            Vidéo récap — à fournir
-          </span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  {/* ET APRÈS ? */}
+  {/* ET APRÈS — gros CTA vers le site dédié + suite nationale */}
   <section class="section on-dark bg-navy">
     <div class="mx-auto max-w-[820px] text-center">
       <div class="eyebrow justify-center fu">Et après ?</div>
@@ -420,17 +130,19 @@ const galleryImages = Object.keys(galleryModules)
           href={ecosystem.capTalentLab}
           target="_blank"
           rel="noopener"
-          class="btn btn-outline on-dark"
+          class="btn btn-primary"
         >
-          Voir le site complet captalentlab.com <ArrowRight class="h-4 w-4" />
+          Voir le site complet captalentlab.com
+          <ArrowRight class="h-4 w-4" />
         </a>
         <a
           href={ecosystem.cayesTalentLab}
           target="_blank"
           rel="noopener"
-          class="btn btn-primary"
+          class="btn btn-outline on-dark"
         >
-          Découvrir Cayes Talent Lab <ArrowRight class="h-4 w-4" />
+          Découvrir Cayes Talent Lab
+          <ArrowRight class="h-4 w-4" />
         </a>
       </div>
     </div>
