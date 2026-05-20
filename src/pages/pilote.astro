@@ -9,6 +9,15 @@ import Card from '@/components/Card.astro';
 import Newsletter from '@/components/Newsletter.astro';
 import { ArrowRight, Play } from '@lucide/astro';
 import { ecosystem, pilot } from '@/config/site';
+
+// Galerie : import statique de toutes les photos pilote-*.jpg
+// (Astro Image optimise chacune au build : WebP + srcset).
+const galleryModules = import.meta.glob('@/assets/pilote/pilote-*.jpg', {
+  eager: true,
+});
+const galleryImages = Object.keys(galleryModules)
+  .sort()
+  .map((k) => galleryModules[k].default);
 ---
 
 <BaseLayout
@@ -82,20 +91,26 @@ import { ecosystem, pilot } from '@/config/site';
       <div class="eyebrow fu">Galerie</div>
       <h2 class="h-section fu">Le pilote en images.</h2>
       <div
-        class="mt-9 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-3 fu"
+        class="mt-9 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4 fu"
       >
         {
-          Array.from({ length: 9 }).map(() => (
-            <div class="flex aspect-[4/3] items-center justify-center rounded-[10px] border border-dashed border-navy/15 bg-white">
-              <span class="text-[10px] font-semibold uppercase tracking-[0.12em] text-navy/20">
-                Photo
-              </span>
-            </div>
+          galleryImages.map((img) => (
+            <figure class="group relative aspect-[4/3] overflow-hidden rounded-[10px] bg-section">
+              <Image
+                src={img}
+                alt="Cap Talent Lab — Cap-Haïtien, janvier 2026"
+                widths={[320, 480]}
+                sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw"
+                loading="lazy"
+                class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+              />
+            </figure>
           ))
         }
       </div>
-      <p class="mt-4 text-[12px] italic text-muted fu">
-        6 à 9 photos de l'événement — à sourcer auprès de ZLC.
+      <p class="mt-5 text-[12px] italic text-muted fu">
+        {galleryImages.length} photos du pilote Cap Talent Lab (janvier 2026)
+        — extraits de captalentlab.com.
       </p>
     </div>
   </section>
@@ -112,7 +127,7 @@ import { ecosystem, pilot } from '@/config/site';
             { who: '[Candidat placé]' },
             { who: '[Intervenant / partenaire]' },
           ].map((t, i) => (
-            <Card class={`fu ${i ? `fu-d${i}` : ''}`}>
+            <Card class={'fu ' + (i ? 'fu-d' + i : '')}>
               <p class="text-[14px] italic leading-[1.7] text-ink">
                 « [Citation courte à recueillir auprès de ZLC] »
               </p>
