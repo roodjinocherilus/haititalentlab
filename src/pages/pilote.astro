@@ -1,5 +1,7 @@
 ---
 // Page Pilote — résumé orienté preuve Cap Talent Lab. Doc 02 §5.
+import { Image } from 'astro:assets';
+import heroPilote from '@/assets/pilote/cap-talent-lab-hero.jpg';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import PageHero from '@/components/PageHero.astro';
 import PreuveSociale from '@/components/PreuveSociale.astro';
@@ -22,15 +24,24 @@ import { ecosystem, pilot } from '@/config/site';
 
   {/* PHOTO HERO */}
   <section class="section bg-white !py-12">
-    <div
-      class="mx-auto flex aspect-[21/9] max-w-[1100px] items-center justify-center rounded-[14px] border border-dashed border-navy/15 bg-section fu"
+    <figure
+      class="relative mx-auto aspect-[21/9] max-w-[1100px] overflow-hidden rounded-[14px] border border-line shadow-[0_24px_60px_rgba(0,0,0,0.18)] fu"
     >
-      <span
-        class="px-6 text-center text-[12px] font-semibold uppercase tracking-[0.14em] text-navy/25"
+      <Image
+        src={heroPilote}
+        alt="Candidat placé et membre de l'équipe ZLC à Cap Talent Lab — Cap-Haïtien, 23-24 janvier 2026"
+        widths={[800, 1280, 1600, 2200]}
+        sizes="(min-width: 1100px) 1100px, 92vw"
+        loading="eager"
+        fetchpriority="high"
+        class="h-full w-full object-cover"
+      />
+      <figcaption
+        class="absolute bottom-4 left-6 text-[11px] font-semibold uppercase tracking-[0.14em] text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]"
       >
-        Photo grand format de l'événement Cap Talent Lab — à sourcer auprès de ZLC
-      </span>
-    </div>
+        Cap Talent Lab — Cap-Haïtien, 23-24 janvier 2026
+      </figcaption>
+    </figure>
   </section>
 
   {/* BLOC #1 PREUVE */}

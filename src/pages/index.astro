@@ -1,6 +1,8 @@
 ---
 // Page d'accueil — vitrine institutionnelle. 11 sections, doc 02 §3.
 // Copy reprise du doc 02 à l'identique.
+import { Image } from 'astro:assets';
+import heroPilote from '@/assets/pilote/cap-talent-lab-hero.jpg';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import PreuveSociale from '@/components/PreuveSociale.astro';
 import ProblemeBlock from '@/components/ProblemeBlock.astro';
@@ -103,12 +105,26 @@ const partenairesGains = [
       </div>
 
       <div
-        class="fu fu-d2 hidden aspect-[4/5] items-center justify-center rounded-[14px] border border-dashed border-white/15 bg-white/[0.03] text-center lg:flex"
+        class="fu fu-d2 relative hidden aspect-[4/5] overflow-hidden rounded-[14px] border border-white/10 shadow-[0_24px_60px_rgba(0,0,0,0.4)] lg:block"
       >
-        <span
-          class="max-w-[180px] px-6 text-[11px] font-semibold uppercase leading-[1.55] tracking-[0.12em] text-white/30"
+        <Image
+          src={heroPilote}
+          alt="Candidat placé et membre de l'équipe ZLC à Cap Talent Lab — janvier 2026"
+          widths={[640, 960, 1280]}
+          sizes="(min-width: 1024px) 40vw, 0px"
+          loading="eager"
+          fetchpriority="high"
+          class="h-full w-full object-cover"
+        />
+        <div
+          class="pointer-events-none absolute inset-0"
+          style="background: linear-gradient(180deg, transparent 55%, rgba(0,15,45,0.55) 100%);"
         >
-          Photo — Cap Talent Lab, janvier 2026 — à sourcer
+        </div>
+        <span
+          class="absolute bottom-4 left-4 right-4 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/80"
+        >
+          Cap Talent Lab — Cap-Haïtien, janvier 2026
         </span>
       </div>
     </div>
