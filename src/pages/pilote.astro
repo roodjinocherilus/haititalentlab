@@ -56,31 +56,234 @@ const galleryImages = Object.keys(galleryModules)
   {/* BLOC #1 PREUVE */}
   <PreuveSociale />
 
-  {/* RÉCIT */}
+  {/* RÉCIT — texte repris de captalentlab.com (section à propos) */}
   <section class="section bg-white">
     <div class="mx-auto max-w-[820px]">
-      <div class="eyebrow fu">Le récit</div>
-      <h2 class="h-section fu">Ce qui s'est passé en janvier 2026.</h2>
+      <div class="eyebrow fu">À propos</div>
+      <h2 class="h-section fu">
+        Un dispositif structuré, pas juste un événement.
+      </h2>
       <div class="mt-7 flex flex-col gap-5 text-[17px] leading-[1.75] text-ink">
         <p class="fu">
-          [Paragraphe 1 — L'idée initiale : pourquoi Cap-Haïtien, ce qui a
-          motivé ZLC à lancer un pilote, le pari de la méthode structurée. À
-          rédiger avec ZLC.]
+          Le Cap Talent Lab est la première plateforme dédiée à la connexion
+          entre talents, entreprises et opportunités économiques dans le Grand
+          Nord d'Haïti.
         </p>
         <p class="fu">
-          [Paragraphe 2 — La mobilisation : comment 200 candidatures ont été
-          recueillies en quelques semaines, l'engagement des entreprises
-          locales, le rôle des partenaires institutionnels.]
+          Face à l'instabilité qui affecte plusieurs régions du pays, le Grand
+          Nord est devenu un point de convergence pour une jeunesse qualifiée
+          et ambitieuse — un réservoir de compétences trop souvent invisible
+          dans les dynamiques nationales.
         </p>
         <p class="fu">
-          [Paragraphe 3 — L'événement : deux jours intenses, conférence
-          d'ouverture, panel d'experts, entretiens directs. L'énergie, le
-          niveau des candidats, la qualité des échanges.]
+          Conçu et porté par <strong>Zero Loss Consulting</strong>, le Cap
+          Talent Lab répond à une double réalité : des diplômés qui peinent à
+          accéder aux entretiens, et des entreprises qui peinent à recruter les
+          bons profils.
         </p>
-        <p class="fu">
-          [Paragraphe 4 — Les résultats : 4,9 / 5 de satisfaction, +10 % de
-          placements, et surtout la preuve que le modèle fonctionne.]
-        </p>
+      </div>
+    </div>
+  </section>
+
+  {/* MÉTHODE — 3 étapes repris de captalentlab.com */}
+  <section class="section bg-section">
+    <div class="mx-auto max-w-[1100px]">
+      <div class="eyebrow fu">La méthode</div>
+      <h2 class="h-section fu">Trois étapes, une rigueur.</h2>
+      <div class="mt-10 grid gap-5 md:grid-cols-3">
+        {
+          [
+            {
+              num: '01',
+              t: 'Présélection rigoureuse',
+              d: "Appel à candidatures, analyse de CV, entretiens et évaluation des compétences techniques et comportementales.",
+            },
+            {
+              num: '02',
+              t: 'Préparation des talents',
+              d: "Ateliers pratiques, simulations d'entretiens, formation sur les attentes réelles du marché du travail.",
+            },
+            {
+              num: '03',
+              t: 'Rencontres directes',
+              d: 'Entretiens en continu avec les recruteurs et panel public sur le marché du travail dans le Nord.',
+            },
+          ].map((s, i) => (
+            <Card accent="sky" class={'fu ' + (i ? 'fu-d' + i : '')}>
+              <span
+                class="block font-bold text-orange"
+                style="font-family: var(--font-display); font-size: 32px; line-height:1;"
+              >
+                {s.num}
+              </span>
+              <h3
+                class="mt-3 text-[19px] font-bold text-navy"
+                style="font-family: var(--font-display);"
+              >
+                {s.t}
+              </h3>
+              <p class="mt-2.5 text-[14px] leading-[1.6] text-ink">{s.d}</p>
+            </Card>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  {/* DÉROULÉ — programme réel des 2 jours, intervenants nommés */}
+  <section class="section on-dark bg-navy">
+    <div class="mx-auto max-w-[1100px]">
+      <div class="eyebrow fu">Le déroulé</div>
+      <h2 class="h-section fu">Deux jours qui ont marqué le Nord.</h2>
+      <div class="mt-10 grid gap-6 md:grid-cols-2">
+        <article
+          class="fu overflow-hidden rounded-[12px] border border-white/10 bg-white/[0.025]"
+        >
+          <header class="flex items-stretch border-b border-white/10">
+            <div
+              class="flex min-w-[110px] flex-col items-center justify-center bg-orange px-7 py-6"
+            >
+              <span
+                class="font-bold text-white"
+                style="font-family: var(--font-display); font-size: 44px; line-height:1;"
+                >01</span
+              >
+              <span
+                class="mt-1 text-[9px] font-bold uppercase tracking-[0.18em] text-white/70"
+                >Jour</span
+              >
+            </div>
+            <div class="flex flex-1 flex-col justify-center px-7 py-5">
+              <span class="text-[10px] font-semibold uppercase tracking-[0.18em] text-sky">
+                23 janvier 2026 · Soirée
+              </span>
+              <h3
+                class="mt-1 text-[22px] font-bold text-white"
+                style="font-family: var(--font-display);"
+              >
+                Cocktail de lancement
+              </h3>
+            </div>
+          </header>
+          <ul class="flex flex-col gap-3 px-7 py-6">
+            {
+              [
+                "Accueil des invités, partenaires, talents et presse à l'Hôtel Roi Christophe",
+                "Discours d'ouverture par <strong>Woodmy Jean Baptiste</strong>, PDG de Zero Loss Consulting",
+                'Présentation Zero Loss Consulting par <strong>Emmanuel Dubuisson</strong>',
+                "Projection du documentaire d'impact de Zero Loss en Haïti",
+                'Performance acoustique jazz et réseautage entre invités',
+              ].map((item) => (
+                <li class="flex gap-3 text-[13.5px] leading-[1.6] text-white/65">
+                  <span
+                    class="mt-[7px] block h-[7px] w-[7px] shrink-0 rounded-full bg-sky"
+                    aria-hidden="true"
+                  />
+                  <span set:html={item} />
+                </li>
+              ))
+            }
+          </ul>
+        </article>
+        <article
+          class="fu fu-d1 overflow-hidden rounded-[12px] border border-white/10 bg-white/[0.025]"
+        >
+          <header class="flex items-stretch border-b border-white/10">
+            <div
+              class="flex min-w-[110px] flex-col items-center justify-center bg-orange px-7 py-6"
+            >
+              <span
+                class="font-bold text-white"
+                style="font-family: var(--font-display); font-size: 44px; line-height:1;"
+                >02</span
+              >
+              <span
+                class="mt-1 text-[9px] font-bold uppercase tracking-[0.18em] text-white/70"
+                >Jour</span
+              >
+            </div>
+            <div class="flex flex-1 flex-col justify-center px-7 py-5">
+              <span class="text-[10px] font-semibold uppercase tracking-[0.18em] text-sky">
+                24 janvier 2026 · Journée complète
+              </span>
+              <h3
+                class="mt-1 text-[22px] font-bold text-white"
+                style="font-family: var(--font-display);"
+              >
+                Journée opérationnelle
+              </h3>
+            </div>
+          </header>
+          <ul class="flex flex-col gap-3 px-7 py-6">
+            {
+              [
+                'Vision Cap Talent Lab par <strong>Woodmy Jean Baptiste</strong>',
+                'Panel <em>Le marché du travail dans le Nord — réalités, opportunités et compétences recherchées</em> — <strong>Dr. Joaneson Lacour</strong>, <strong>Françoise Zéphir Théophile</strong> (Ets. Novella), <strong>Katie-Flore Fils-Aimé</strong> (BIEN Group)',
+                "Atelier « Simulation d'entretien d'embauche » par <strong>Annie Gustave</strong>, HR Consultant Zero Loss",
+                "Atelier « Être recruté aujourd'hui — compétences, attitude, performance »",
+                'Entretiens directs et continus entre entreprises et talents',
+              ].map((item) => (
+                <li class="flex gap-3 text-[13.5px] leading-[1.6] text-white/65">
+                  <span
+                    class="mt-[7px] block h-[7px] w-[7px] shrink-0 rounded-full bg-sky"
+                    aria-hidden="true"
+                  />
+                  <span set:html={item} />
+                </li>
+              ))
+            }
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  {/* IMPACT QUALITATIF — chiffres repris de captalentlab.com section impact */}
+  <section class="section bg-white">
+    <div class="mx-auto max-w-[1100px]">
+      <div class="eyebrow fu">Ce que ça représente</div>
+      <h2 class="h-section fu">Une preuve que c'est possible.</h2>
+      <p class="mt-5 max-w-[680px] text-[16px] leading-[1.75] text-ink fu">
+        Le Cap Talent Lab a démontré qu'il est possible de structurer la
+        rencontre entre talents et entreprises dans le Grand Nord, de rendre
+        visibles les compétences locales, et de créer un espace utile, concret
+        et reproductible.
+      </p>
+      <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          [
+            {
+              v: '60 %+',
+              l: "des présélectionnés ont accédé à des entretiens",
+            },
+            {
+              v: '100 %',
+              l: "des présélectionnés ont bénéficié d'une préparation",
+            },
+            {
+              v: '30–45 %',
+              l: 'des candidats ont obtenu une opportunité professionnelle',
+            },
+            {
+              v: '+10',
+              l: "secteurs d'activité représentés",
+            },
+          ].map((s, i) => (
+            <Card class={'relative overflow-hidden fu ' + (i ? 'fu-d' + i : '')}>
+              <span
+                class="block font-extrabold text-navy"
+                style="font-family: var(--font-display); font-size: 46px; line-height:1;"
+              >
+                {s.v}
+              </span>
+              <p
+                class="mt-2 text-[11px] font-medium uppercase leading-[1.45] tracking-[0.07em] text-muted"
+              >
+                {s.l}
+              </p>
+            </Card>
+          ))
+        }
       </div>
     </div>
   </section>
@@ -115,28 +318,67 @@ const galleryImages = Object.keys(galleryModules)
     </div>
   </section>
 
-  {/* TÉMOIGNAGES */}
-  <section class="section bg-white">
+  {/* INTERVENANTS — repris de captalentlab.com (programme J1 + J2) */}
+  <section class="section bg-section">
     <div class="mx-auto max-w-[1100px]">
-      <div class="eyebrow fu">Témoignages</div>
-      <h2 class="h-section fu">Ils ont vécu Cap Talent Lab.</h2>
-      <div class="mt-10 grid gap-6 md:grid-cols-3">
+      <div class="eyebrow fu">Ils ont fait le pilote</div>
+      <h2 class="h-section fu">Intervenants & panélistes.</h2>
+      <p class="mt-5 max-w-[640px] text-[16px] leading-[1.7] text-ink fu">
+        Une plénière, deux ateliers et un panel d'experts sur le marché du
+        travail dans le Nord — voix qui ont porté l'édition pilote.
+      </p>
+      <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {
           [
-            { who: '[Entreprise recruteuse]' },
-            { who: '[Candidat placé]' },
-            { who: '[Intervenant / partenaire]' },
-          ].map((t, i) => (
-            <Card class={'fu ' + (i ? 'fu-d' + i : '')}>
-              <p class="text-[14px] italic leading-[1.7] text-ink">
-                « [Citation courte à recueillir auprès de ZLC] »
-              </p>
-              <p class="mt-4 text-[13px] font-semibold text-navy">{t.who}</p>
-              <p class="text-[12px] text-muted">[Nom, fonction]</p>
+            {
+              name: 'Woodmy Jean Baptiste',
+              role: 'PDG, Zero Loss Consulting',
+              tag: "Discours d'ouverture · Vision Cap Talent Lab",
+            },
+            {
+              name: 'Emmanuel Dubuisson',
+              role: 'Zero Loss Consulting',
+              tag: 'Présentation Zero Loss Consulting',
+            },
+            {
+              name: 'Annie Gustave',
+              role: 'HR Consultant, Zero Loss',
+              tag: "Atelier « Simulation d'entretien d'embauche »",
+            },
+            {
+              name: 'Dr. Joaneson Lacour',
+              role: 'Panéliste',
+              tag: 'Panel — Marché du travail dans le Nord',
+            },
+            {
+              name: 'Françoise Zéphir Théophile',
+              role: 'Ets. Novella',
+              tag: 'Panel — Marché du travail dans le Nord',
+            },
+            {
+              name: 'Katie-Flore Fils-Aimé',
+              role: 'BIEN Group',
+              tag: 'Panel — Marché du travail dans le Nord',
+            },
+          ].map((p, i) => (
+            <Card class={'fu ' + (i ? 'fu-d' + (i % 3) : '')}>
+              <span class="block text-[10px] font-semibold uppercase tracking-[0.13em] text-orange">
+                {p.tag}
+              </span>
+              <h3
+                class="mt-3 text-[18px] font-bold text-navy"
+                style="font-family: var(--font-display);"
+              >
+                {p.name}
+              </h3>
+              <p class="mt-1 text-[13px] text-muted">{p.role}</p>
             </Card>
           ))
         }
       </div>
+      <p class="mt-6 text-[12px] italic text-muted fu">
+        Source : programme officiel captalentlab.com.
+      </p>
     </div>
   </section>
 
